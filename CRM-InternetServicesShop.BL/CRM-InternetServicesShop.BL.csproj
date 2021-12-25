@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Controller\EntityController.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Payment.cs" />

@@ -100,13 +100,33 @@ namespace CRM_InternetServicesShop.UI
 
         private void BtnPay_Click(object sender, EventArgs e)
         {
+            DateTime paymentDate = DateTime.Now;
             var order = new Order()
             {
                 CustomerId = customer.CustomerId,
                 Date = DateTime.Now
             };
 
+            dbContext.Orders.Add(order);
+            dbContext.SaveChanges();
 
+            List<Payment> payments = new List<Payment>();
+
+            foreach (Service service in cart)
+            {
+                var payment = new Payment()
+                {
+                    ServiceId = service.ServiceId,
+                    OrderId = order.OrderId,
+                    Date = paymentDate
+                };
+                payments.Add(payment);
+            }
+
+            dbContext.Payments.AddRange(payments);
+            dbContext.SaveChanges();
+            listBoxCart.Items.Clear();
+            label3.Text = "До оплати : ";
         }
 
     }
